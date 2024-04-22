@@ -265,11 +265,39 @@
     <input type="submit" value="Aplicar Filtros" class="btn btn-full" />
   </aside>
   <div class="search-container">
+    <div>
+      <ul class="product-type-list">
+        <li>
+          <a href="" class="btn btn-sm">TODOS</a>
+        </li>
+        <li>
+          <a href="" class="btn btn-sm">JOGOS</a>
+        </li>
+        <li>
+          <a href="" class="btn btn-sm">DLCS</a>
+        </li>
+        <li>
+          <a href="" class="btn btn-sm">GIFT CARD</a>
+        </li>
+        <li>
+          <a href="" class="btn btn-sm">ASSINATURAS</a>
+        </li>
+        <li>
+          <a href="" class="btn btn-sm">MOEDAS</a>
+        </li>
+        <li>
+          <a href="" class="btn btn-sm">PACOTES</a>
+        </li>
+      </ul>
+    </div>
     <header>
       <form action="/products" class="search">
-        <input type="text" name="q" class="input input-full" placeholder="Buscar jogo ou palavra-chave" />
+        <input type="text" name="q" class="input input-full" placeholder="Buscar jogo ou palavra-chave" autofocus/>
         <button type="submit" class="btn btn-square">
-          <%= image_tag("magnifying-glass-solid.svg", class: "icon") %>
+          <span class="sr-only">
+            Buscar
+          </span>
+          <%= image_tag("magnifying-glass-solid.svg", class: "icon", "aria-hidden": true) %>
         </button>
       </form>
     </header>

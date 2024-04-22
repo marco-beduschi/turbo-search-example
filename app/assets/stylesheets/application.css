@@ -41,6 +41,9 @@
   --rounded-full: 9999px;
   --rounded-sm: 0.25rem;
   --rounded-md: 0.5rem;
+
+  --font-size-sm: 0.75rem;
+  --font-size-md: 1rem;
 }
 
 body {
@@ -67,6 +70,7 @@ input[type="radio"] {
   height: 100%;
   max-width: 1080px;
   display: flex;
+  gap: 1.25rem;
   margin: 0 auto;
   padding: 1.25rem;
 }
@@ -76,9 +80,16 @@ input[type="radio"] {
 }
 
 .filter-list {
+  display: flex;
+  flex-direction: column;
   max-height: 15rem;
   overflow-y: auto;
   padding: 0 0.625rem;
+
+  & label {
+    display: flex;
+    gap: 0.25rem;
+  }
 }
 
 .filter-list-summary {
@@ -92,6 +103,7 @@ input[type="radio"] {
 
 .search-container {
   display: flex;
+  gap: 1.25rem;
   flex-direction: column;
   flex-grow: 1;
   max-width: 630px;
@@ -104,18 +116,20 @@ input[type="radio"] {
 
   & > input {
     border-radius: var(--rounded-full);
+    padding-right: 3rem;
   }
 
   > button {
     position: absolute;
-    top: 0.3rem;
-    right: 0.3rem;
+    top: 0.475rem;
+    right: 0.475rem;
     border-radius: var(--rounded-full);
   }
 }
 
 .search-results {
   display: flex;
+  gap: 2.5rem;
   flex-direction: column;
   flex-grow: 1;
 }
@@ -148,6 +162,12 @@ input[type="radio"] {
   padding: 0.375rem;
 }
 
+.product-type-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .product-price {
   display: flex;
 }
@@ -156,6 +176,19 @@ input[type="radio"] {
 }
 
 /* UI Components */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 .input {
   padding: 0.875rem 1.25rem;
 }
@@ -170,6 +203,7 @@ input[type="radio"] {
 }
 
 .btn {
+  color: var(--color-text);
   padding: 0.875rem 2rem;
   background-color: var(--slate-200);
   border: 1px solid var(--slate-200);
@@ -186,8 +220,14 @@ input[type="radio"] {
   }
 }
 
-.btn-square {
+.btn-sm {
+  font-size: var(--font-size-sm);
   padding: 0.625rem 0.875rem;
+  border-radius: var(--rounded-sm);
+}
+
+.btn-square {
+  padding: 0.875rem 0.875rem;
 }
 
 .btn-full {
