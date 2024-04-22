@@ -268,7 +268,9 @@
     <header>
       <form action="/products" class="search">
         <input type="text" name="q" class="input input-full" placeholder="Buscar jogo ou palavra-chave" />
-        <input type="submit" value="Search" />
+        <button type="submit" class="btn btn-square">
+          <%= image_tag("magnifying-glass-solid.svg", class: "icon") %>
+        </button>
       </form>
     </header>
     <section class="search-results">
