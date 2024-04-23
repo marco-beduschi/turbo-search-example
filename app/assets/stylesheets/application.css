@@ -82,7 +82,7 @@ input[type="radio"] {
 .applied-filters-list {
   display: flex;
   gap: 0.5rem;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 
   & .btn {
     display: flex;
@@ -246,6 +246,7 @@ input[type="radio"] {
 }
 
 .input {
+  border: 2px solid var(--slate-600);
   padding: 0.875rem 1.25rem;
 }
 
