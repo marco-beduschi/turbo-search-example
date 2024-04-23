@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Exercises
 
-Things you may want to cover:
+### Search by product's name
 
-* Ruby version
+1. Search by product name.
+   1.1. _Partial search_. Ex.: Searching by **de** should return "El**de**n Ring" but also "**De**vil May Cry"
+   1.2. _Update URL_. Every new search should update the URL, ex.: "localhost:3000/**q=de**"
+   1.4. _Keep focus on searchbar._ When submitting the search, the user should not lose focus of the search bar.
+   1.3. Navigatable. Click the "back button" on browser should navigate to previous searches.
 
-* System dependencies
+2. Search by price
 
-* Configuration
+3. Search by category
 
-* Database creation
+4. Search within categories filter
 
-* Database initialization
+5. Remove filters individually
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+6. Filter by type

@@ -79,6 +79,36 @@ input[type="radio"] {
   width: 250px;
 }
 
+.applied-filters-list {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+
+  & .btn {
+    display: flex;
+    text-wrap: nowrap;
+    gap: 0.25rem;
+
+    & img {
+      align-self: center;
+    }
+  }
+}
+
+.applied-filter {
+  border: none;
+  background-color: var(--slate-200);
+  border-radius: var(--rounded-sm);
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+
+  & > img {
+    flex-shrink: 0;
+    align-self: center;
+  }
+}
+
 .filter-list {
   display: flex;
   flex-direction: column;
@@ -258,12 +288,12 @@ input[type="radio"] {
       transform: scale(0.8);
     }
   }
-}
 
-.btn-sm {
-  font-size: var(--font-size-sm);
-  padding: 0.625rem 0.875rem;
-  border-radius: var(--rounded-sm);
+  &:is(.btn-sm) {
+    font-size: var(--font-size-sm);
+    padding: 0.375rem 0.625rem;
+    border-radius: var(--rounded-sm);
+  }
 }
 
 .btn-full {
