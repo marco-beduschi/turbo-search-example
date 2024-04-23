@@ -16,43 +16,6 @@
     </div>
     <details open>
       <summary class="filter-list-summary">
-        Plataforma
-      </summary>
-      <ul class="filter-list">
-        <li>
-          <label class="filter-list-item">
-            <input type="checkbox" name="platform[]" value="PC" />
-            PC
-          </label>
-        </li>
-        <li>
-          <label class="filter-list-item">
-            <input type="checkbox" name="platform[]" value="Xbox" />
-            Xbox
-          </label>
-        </li>
-        <li>
-          <label class="filter-list-item">
-            <input type="checkbox" name="platform[]" value="Playstation" />
-            Playstation
-          </label>
-        </li>
-        <li>
-          <label class="filter-list-item">
-            <input type="checkbox" name="platform[]" value="Nintendo" />
-            Nintendo
-          </label>
-        </li>
-        <li>
-          <label class="filter-list-item">
-            <input type="checkbox" name="platform[]" value="Mobile" />
-            Mobile
-          </label>
-        </li>
-      </ul>
-    </details>
-    <details open>
-      <summary class="filter-list-summary">
         Preço
       </summary>
       <ul class="filter-list">
@@ -96,49 +59,6 @@
           <label class="filter-list-item">
             <input type="radio" name="price" value="100">
             Abaixo de R$100,00
-          </label>
-        </li>
-      </ul>
-    </details>
-    <details open>
-      <summary class="filter-list-summary">
-        Sistema
-      </summary>
-      <ul class="filter-list">
-        <li>
-          <label class="filter-list-item">
-            <input type="checkbox" name="os[]" value="windows">
-            Windows
-          </label>
-        </li>
-        <li>
-          <label class="filter-list-item">
-            <input type="checkbox" name="os[]" value="linux">
-            Linux
-          </label>
-        </li>
-        <li>
-          <label class="filter-list-item">
-            <input type="checkbox" name="os[]" value="mac_os">
-            macOS
-          </label>
-        </li>
-        <li>
-          <label class="filter-list-item">
-            <input type="checkbox" name="os[]" value="xbox_series_x">
-            Xbox Series X
-          </label>
-        </li>
-        <li>
-          <label class="filter-list-item">
-            <input type="checkbox" name="os[]" value="playstation_5">
-            Playstation 5
-          </label>
-        </li>
-        <li>
-          <label class="filter-list-item">
-            <input type="checkbox" name="os[]" value="wii">
-            Wii
           </label>
         </li>
       </ul>
@@ -279,25 +199,46 @@
     <div>
       <ul class="product-type-list">
         <li>
-          <a href="" class="btn btn-sm">TODOS</a>
+          <label class="btn btn-sm">
+            <input type="checkbox" name="type[]" value="all" />
+            TODOS
+          </label>
         </li>
         <li>
-          <a href="" class="btn btn-sm">JOGOS</a>
+          <label class="btn btn-sm">
+            <input type="checkbox" name="type[]" value="game" />
+            JOGOS
+          </label>
         </li>
         <li>
-          <a href="" class="btn btn-sm">DLCS</a>
+          <label class="btn btn-sm">
+            <input type="checkbox" name="type[]" value="dlc" />
+            DLCs
+          </label>
         </li>
         <li>
-          <a href="" class="btn btn-sm">GIFT CARD</a>
+          <label class="btn btn-sm">
+            <input type="checkbox" name="type[]" value="gift_card" />
+            GIFT CARDS
+          </label>
         </li>
         <li>
-          <a href="" class="btn btn-sm">ASSINATURAS</a>
+          <label class="btn btn-sm">
+            <input type="checkbox" name="type[]" value="subscription" />
+            ASSINATURAS
+          </label>
         </li>
         <li>
-          <a href="" class="btn btn-sm">MOEDAS</a>
+          <label class="btn btn-sm">
+            <input type="checkbox" name="type[]" value="ingame_currency" />
+            MOEDAS
+          </label>
         </li>
         <li>
-          <a href="" class="btn btn-sm">PACOTES</a>
+          <label class="btn btn-sm">
+            <input type="checkbox" name="type[]" value="bundle" />
+            PACOTES
+          </label>
         </li>
       </ul>
     </div>
@@ -384,14 +325,14 @@
         </li>
       </ol>
       <div class="pagination-container">
-        <a href="" class="btn btn-ghost">
+        <%= link_to(products_path({**request.query_parameters, "page" => ([(params[:page].to_i - 1), 1].max)}), class: "btn btn-ghost") do %>
           <%= image_tag("chevron-left-solid.svg", "aria-hidden": true, width: "20px", height: "20px") %>
           <span class="sr-only">Previous page</span>
-        </a>
-        <a href="" class="btn btn-ghost">
+        <% end %>
+        <%= link_to(products_path({**request.query_parameters, "page" => params[:page].to_i + 1}), class: "btn btn-ghost") do %>
           <%= image_tag("chevron-right-solid.svg", "aria-hidden": true, width: "20px", height: "20px") %>
           <span class="sr-only">Next page</span>
-        </a>
+        <% end %>
       </div>
     </section>
   </div>
