@@ -293,11 +293,11 @@
     <header>
       <form action="/products" class="search">
         <input type="text" name="q" class="input input-full" placeholder="Buscar jogo ou palavra-chave" autofocus/>
-        <button type="submit" class="btn btn-square">
+        <button type="submit" class="btn">
           <span class="sr-only">
             Buscar
           </span>
-          <%= image_tag("magnifying-glass-solid.svg", class: "icon", "aria-hidden": true) %>
+          <%= image_tag("magnifying-glass-solid.svg", width: "20px", height: "20px", "aria-hidden": true) %>
         </button>
       </form>
     </header>
@@ -332,7 +332,6 @@
                 <li>Xbox</li>
                 <li>Wii</li>
               </ul>
-              <p>00d 12:37:26</p>
               <div class="product-price">
                 <p class="badge badge-warning">-100%</p>
                 <p class="product-price-badge badge badge-full">Grátis</p>
@@ -349,7 +348,6 @@
                 <li>Win</li>
                 <li>Mac</li>
               </ul>
-              <p>00d 12:37:26</p>
               <div class="product-price">
                 <p class="badge badge-warning">-75%</p>
                 <p class="product-price-badge badge badge-full">R$ 15,59</p>

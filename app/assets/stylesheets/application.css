@@ -36,7 +36,7 @@
   --color-base-100: var(--slate-100);
   --color-base-200: var(--slate-200);
 
-  --color-text: var(--slate-900);
+  --color-text: var(--slate-800);
 
   --rounded-full: 9999px;
   --rounded-sm: 0.25rem;
@@ -123,7 +123,6 @@ input[type="radio"] {
     position: absolute;
     top: 0.475rem;
     right: 0.475rem;
-    border-radius: var(--rounded-full);
   }
 }
 
@@ -182,9 +181,6 @@ input[type="radio"] {
   font-weight: 700;
 }
 
-.product-price-badge {
-}
-
 .product-system-list {
   display: flex;
   gap: 0.125rem;
@@ -213,11 +209,6 @@ input[type="radio"] {
   width: 100%;
 }
 
-.icon {
-  width: 12px;
-  height: 12px;
-}
-
 .btn {
   color: var(--color-text);
   padding: 0.875rem 2rem;
@@ -234,16 +225,27 @@ input[type="radio"] {
     background-color: var(--slate-400);
     transform: scale(0.95);
   }
+
+  /* Circle buttons */
+  &:where(:has(.sr-only):has(img)) {
+    padding: 0;
+    aspect-ratio: 1;
+    block-size: 2.5rem;
+    display: grid;
+    inline-size: 2.5rem;
+    place-items: center;
+    border-radius: var(--rounded-full);
+
+    > * {
+      grid-area: 1/1;
+    }
+  }
 }
 
 .btn-sm {
   font-size: var(--font-size-sm);
   padding: 0.625rem 0.875rem;
   border-radius: var(--rounded-sm);
-}
-
-.btn-square {
-  padding: 0.875rem 0.875rem;
 }
 
 .btn-full {
