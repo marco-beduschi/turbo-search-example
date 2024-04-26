@@ -262,7 +262,7 @@
               <div class="card-header"></div>
               <div class="card-body">
                 <p><%= product.name %></p>
-                <ul class="product-system-list">
+                <ul class="product-categories-list">
                   <% product.categories.each do |category| %>
                     <li><%= category.name %></li>
                   <% end %>
@@ -275,16 +275,6 @@
           </li>
         <% end %>
       </ol>
-      <div class="pagination-container">
-        <%= link_to(products_path({**request.query_parameters, "page" => ([(params[:page].to_i - 1), 1].max)}), class: "btn btn-ghost") do %>
-          <%= image_tag("chevron-left-solid.svg", "aria-hidden": true, width: "20px", height: "20px") %>
-          <span class="sr-only">Previous page</span>
-        <% end %>
-        <%= link_to(products_path({**request.query_parameters, "page" => params[:page].to_i + 1}), class: "btn btn-ghost") do %>
-          <%= image_tag("chevron-right-solid.svg", "aria-hidden": true, width: "20px", height: "20px") %>
-          <span class="sr-only">Next page</span>
-        <% end %>
-      </div>
     </section>
   </div>
 </div>

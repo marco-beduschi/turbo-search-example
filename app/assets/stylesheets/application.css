@@ -176,12 +176,6 @@ input[type="radio"] {
   }
 }
 
-.pagination-container {
-  justify-content: center;
-  display: flex;
-  gap: 1rem;
-}
-
 .card {
   display: flex;
   flex-direction: column;
@@ -192,11 +186,6 @@ input[type="radio"] {
 
   & .product-price-badge {
     width: 100%;
-  }
-
-  & .product-discount-badge {
-    background-color: var(--slate-300);
-    border-color: var(--slate-300);
   }
 }
 
@@ -234,7 +223,9 @@ input[type="radio"] {
   font-weight: 700;
 }
 
-.product-system-list {
+.product-categories-list {
+  overflow-x: auto;
+  text-wrap: nowrap;
   display: flex;
   gap: 0.125rem;
   font-size: 0.75rem;
