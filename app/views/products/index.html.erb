@@ -254,75 +254,26 @@
       </form>
     </header>
     <section class="search-results">
-      <span>4 resultados</span>
+      <span><%= @products.size %> resultados</span>
       <ol class="search-result-list">
-        <li>
-          <div class="card">
-            <div class="card-header"></div>
-            <div class="card-body">
-              <p>Sid Meier's Civilization VI - Platinum Edition</p>
-              <ul class="product-system-list">
-                <li>Win</li>
-                <li>Linux</li>
-                <li>Mac</li>
-              </ul>
-              <div class="product-price">
-                <p class="product-price-badge badge">R$ 161,20</p>
+        <% @products.each do |product| %>
+          <li>
+            <div class="card">
+              <div class="card-header"></div>
+              <div class="card-body">
+                <p><%= product.name %></p>
+                <ul class="product-system-list">
+                  <% product.categories.each do |category| %>
+                    <li><%= category.name %></li>
+                  <% end %>
+                </ul>
+                <div class="product-price">
+                  <p class="product-price-badge badge">R$ <%= product.price %></p>
+                </div>
               </div>
             </div>
-          </div>
-        </li>
-        <li>
-          <div class="card">
-            <div class="card-header"></div>
-            <div class="card-body">
-              <p>Fortnite</p>
-              <ul class="product-system-list">
-                <li>Win</li>
-                <li>Mac</li>
-                <li>PS5</li>
-                <li>Xbox</li>
-                <li>Wii</li>
-              </ul>
-              <div class="product-price">
-                <p class="product-discount-badge badge">-100%</p>
-                <p class="product-price-badge badge">Grátis</p>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="card">
-            <div class="card-header"></div>
-            <div class="card-body">
-              <p>World Of Warcraft</p>
-              <ul class="product-system-list">
-                <li>Win</li>
-                <li>Mac</li>
-              </ul>
-              <div class="product-price">
-                <p class="product-discount-badge badge">-75%</p>
-                <p class="product-price-badge badge">R$ 15,59</p>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="card">
-            <div class="card-header"></div>
-            <div class="card-body">
-              <p>Alan Wake II</p>
-              <ul class="product-system-list">
-                <li>Win</li>
-                <li>PS5</li>
-                <li>Xbox</li>
-              </ul>
-              <div class="product-price">
-                <p class="product-price-badge badge">R$230,00</p>
-              </div>
-            </div>
-          </div>
-        </li>
+          </li>
+        <% end %>
       </ol>
       <div class="pagination-container">
         <%= link_to(products_path({**request.query_parameters, "page" => ([(params[:page].to_i - 1), 1].max)}), class: "btn btn-ghost") do %>
