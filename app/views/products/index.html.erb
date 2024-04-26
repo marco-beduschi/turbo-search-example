@@ -70,126 +70,14 @@
       <div>
         <input type="text" name="category.name" placeholder="Buscar categoria" class="input input-full"/>
         <ul class="filter-list">
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="action" />
-              Action
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="adventure" />
-              Adventure
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="role_playing" />
-              Role Playing
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="strategy" />
-              Strategy
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="simulation" />
-              Simulation
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="puzzle" />
-              Puzzle
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="platformer" />
-              Platformer
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="racing" />
-              Racing
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="sports" />
-              Sports
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="fighting" />
-              Fighting
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="shooter" />
-              Shooter
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="survival" />
-              Survival
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="stealth" />
-              Stealth
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="sandbox" />
-              Sandbox
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="horror" />
-              Horror
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="mmorpg" />
-              MMORPG
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="open_world" />
-              Open-World
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="educational" />
-              Educational
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="music_rythm" />
-              Music-Rythm
-            </label>
-          </li>
-          <li>
-            <label class="filter-list-item">
-              <input type="checkbox" name="category[]" value="visual_novel" />
-              Visual Novel
-            </label>
-          </li>
+          <% @categories.each do |category| %>
+            <li>
+              <label class="filter-list-item">
+                <input type="checkbox" name="category[]" value="<%= category.id %>" />
+                <%= category.name %>
+              </label>
+            </li>
+          <% end %>
         </ul>
       </div>
     </details>
