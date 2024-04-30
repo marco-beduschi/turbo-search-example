@@ -88,46 +88,18 @@
       <ul class="product-type-list">
         <li>
           <label class="btn btn-sm">
-            <input type="checkbox" name="type[]" value="all" />
+            <input type="checkbox" name="contet_type[]" value="all" />
             TODOS
           </label>
         </li>
-        <li>
-          <label class="btn btn-sm">
-            <input type="checkbox" name="type[]" value="game" />
-            JOGOS
-          </label>
-        </li>
-        <li>
-          <label class="btn btn-sm">
-            <input type="checkbox" name="type[]" value="dlc" />
-            DLCs
-          </label>
-        </li>
-        <li>
-          <label class="btn btn-sm">
-            <input type="checkbox" name="type[]" value="gift_card" />
-            GIFT CARDS
-          </label>
-        </li>
-        <li>
-          <label class="btn btn-sm">
-            <input type="checkbox" name="type[]" value="subscription" />
-            ASSINATURAS
-          </label>
-        </li>
-        <li>
-          <label class="btn btn-sm">
-            <input type="checkbox" name="type[]" value="ingame_currency" />
-            MOEDAS
-          </label>
-        </li>
-        <li>
-          <label class="btn btn-sm">
-            <input type="checkbox" name="type[]" value="bundle" />
-            PACOTES
-          </label>
-        </li>
+        <% Product.select(:content_type).distinct.map(&:content_type).each do |content_type| %>
+          <li>
+            <label class="btn btn-sm">
+              <input type="checkbox" name="content_type[]" value="<%= content_type %>" />
+              <%= Product.human_attribute_name("content_type.#{content_type}") %>
+            </label>
+          </li>
+        <% end %>
       </ul>
     </div>
     <header>

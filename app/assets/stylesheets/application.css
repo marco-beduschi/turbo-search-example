@@ -204,8 +204,12 @@ input[type="radio"] {
   flex-wrap: wrap;
   gap: 0.5rem;
 
-  & > li label:has(input:checked) {
-    background-color: var(--slate-400);
+  & > li label {
+    text-transform: uppercase;
+
+    &:has(input:checked) {
+      background-color: var(--slate-400);
+    }
   }
 
   & > li input {
