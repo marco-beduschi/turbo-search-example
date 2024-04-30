@@ -147,7 +147,13 @@
         <% @products.each do |product| %>
           <li>
             <div class="card">
-              <div class="card-header"></div>
+              <div>
+                <% if product.image_url.present? %>
+                  <img src="<%= product.image_url %>" alt="<%= product.name %> banner" />
+                <% else %>
+                  <img src="https://dummyimage.com/460x215/33414f/64748b" alt="" aria-hidden=true />
+                <% end %>
+              </div>
               <div class="card-body">
                 <p><%= product.name %></p>
                 <ul class="product-categories-list">
