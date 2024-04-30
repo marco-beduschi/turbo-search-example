@@ -128,7 +128,7 @@
                   <% end %>
                 </ul>
                 <div class="product-price">
-                  <p class="product-price-badge badge">R$ <%= product.price %></p>
+                  <p class="badge product-price-badge"><%= product.price.zero? ? Product.human_attribute_name("price", count: 0) : number_to_currency(product.price) %></p>
                 </div>
               </div>
             </div>

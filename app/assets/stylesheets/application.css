@@ -235,7 +235,6 @@ input[type="radio"] {
   font-size: 0.75rem;
 }
 
-/* UI Components */
 .sr-only {
   position: absolute;
   width: 1px;
