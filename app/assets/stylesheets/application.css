@@ -199,21 +199,14 @@ input[type="radio"] {
   padding: 0.375rem;
 }
 
-.product-type-list {
+.product-content-type-list {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 
-  & > li label {
+  & > li a {
+    color: var(--color-text);
     text-transform: uppercase;
-
-    &:has(input:checked) {
-      background-color: var(--slate-400);
-    }
-  }
-
-  & > li input {
-    display: none;
   }
 }
 
@@ -298,6 +291,11 @@ input[type="radio"] {
 
 .btn-full {
   width: 100%;
+}
+
+.btn-active {
+  background-color: var(--slate-400);
+  transform: scale(0.95);
 }
 
 .btn-ghost {

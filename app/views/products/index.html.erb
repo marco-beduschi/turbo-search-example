@@ -85,19 +85,12 @@
   </aside>
   <div class="search-container">
     <div>
-      <ul class="product-type-list">
-        <li>
-          <label class="btn btn-sm">
-            <input type="checkbox" name="contet_type[]" value="all" />
-            TODOS
-          </label>
-        </li>
-        <% Product.select(:content_type).distinct.map(&:content_type).each do |content_type| %>
+      <ul class="product-content-type-list">
+        <% (["all"] + Product.select(:content_type).distinct.map(&:content_type)).each do |content_type| %>
           <li>
-            <label class="btn btn-sm">
-              <input type="checkbox" name="content_type[]" value="<%= content_type %>" />
+            <%= link_to(products_path({**request.query_parameters, "content_type" => content_type}), class: class_names("btn btn-sm", "btn-active": request.query_parameters["content_type"] == content_type)) do %>
               <%= Product.human_attribute_name("content_type.#{content_type}") %>
-            </label>
+            <% end %>
           </li>
         <% end %>
       </ul>
