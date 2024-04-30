@@ -21,43 +21,43 @@
       <ul class="filter-list">
         <li>
           <label class="filter-list-item">
-            <input type="radio" name="price" value="0">
+            <%= radio_button_tag("price", 0, params[:price] == "0", form: :filters_form) %>
             Grátis
           </label>
         </li>
         <li>
           <label class="filter-list-item">
-            <input type="radio" name="price" value="5">
+            <%= radio_button_tag("price", 5, params[:price] == "5", form: :filters_form) %>
             Abaixo de R$5,00
           </label>
         </li>
         <li>
           <label class="filter-list-item">
-            <input type="radio" name="price" value="10">
+            <%= radio_button_tag("price", 10, params[:price] == "10", form: :filters_form) %>
             Abaixo de R$10,00
           </label>
         </li>
         <li>
           <label class="filter-list-item">
-            <input type="radio" name="price" value="15">
+            <%= radio_button_tag("price", 15, params[:price] == "15", form: :filters_form) %>
             Abaixo de R$15,00
           </label>
         </li>
         <li>
           <label class="filter-list-item">
-            <input type="radio" name="price" value="25">
+            <%= radio_button_tag("price", 25, params[:price] == "25", form: :filters_form) %>
             Abaixo de R$25,00
           </label>
         </li>
         <li>
           <label class="filter-list-item">
-            <input type="radio" name="price" value="50">
+            <%= radio_button_tag("price", 50, params[:price] == "50", form: :filters_form) %>
             Abaixo de R$50,00
           </label>
         </li>
         <li>
           <label class="filter-list-item">
-            <input type="radio" name="price" value="100">
+            <%= radio_button_tag("price", 100, params[:price] == "100", form: :filters_form) %>
             Abaixo de R$100,00
           </label>
         </li>

@@ -16,4 +16,10 @@ class Product < ApplicationRecord
   scope :with_name, lambda { |name|
     where('products.name LIKE ?', "%#{name}%")
   }
+
+  scope :with_price_up_to, lambda { |price|
+                             return if price.nil?
+
+                             where('price <= ?', price)
+                           }
 end
