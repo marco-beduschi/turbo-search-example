@@ -190,12 +190,6 @@ input[type="radio"] {
   }
 }
 
-.card-header {
-  flex-shrink: 0;
-  height: 92px;
-  background-color: var(--color-base-200);
-}
-
 .card-body {
   flex-basis: 100%;
   display: flex;
