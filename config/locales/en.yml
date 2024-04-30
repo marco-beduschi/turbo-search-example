@@ -32,7 +32,7 @@ en:
     attributes:
       product:
         content_type:
-          all: Todos
+          all: All
           game: Game
           dlc: DLC
           gift_card: Gift Card

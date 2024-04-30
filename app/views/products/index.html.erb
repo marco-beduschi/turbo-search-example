@@ -86,7 +86,12 @@
   <div class="search-container">
     <div>
       <ul class="product-content-type-list">
-        <% (["all"] + Product.select(:content_type).distinct.map(&:content_type)).each do |content_type| %>
+        <li>
+          <%= link_to(products_path({**request.query_parameters.except("content_type")}), class: class_names("btn btn-sm", "btn-active": request.query_parameters["content_type"].nil?)) do %>
+            <%= Product.human_attribute_name("content_type.all") %>
+          <% end %>
+        </li>
+        <% (Product.select(:content_type).distinct.map(&:content_type)).each do |content_type| %>
           <li>
             <%= link_to(products_path({**request.query_parameters, "content_type" => content_type}), class: class_names("btn btn-sm", "btn-active": request.query_parameters["content_type"] == content_type)) do %>
               <%= Product.human_attribute_name("content_type.#{content_type}") %>
