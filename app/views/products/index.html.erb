@@ -3,15 +3,22 @@
     <div>
       <p>Filtros</p>
       <ul class="applied-filters-list">
-        <li>
-          <button class="btn btn-sm">PC <%= image_tag("circle-xmark-solid.svg", height: "18px", width: "18px") %></button>
-        </li>
-        <li>
-          <button class="btn btn-sm">< R$50 <%= image_tag("circle-xmark-solid.svg", height: "18px", width: "18px") %></button>
-        </li>
-        <li>
-          <button class="btn btn-sm">Action <%= image_tag("circle-xmark-solid.svg", height: "18px", width: "18px") %></button>
-        </li>
+        <% [*params[:category]]&.each do |category| %>
+          <li>
+            <%= link_to(products_path(**request.query_parameters.except("category"), "category": [*params[:category]] - [category.to_s]), class: "btn btn-sm") do %>
+              <%= Category.find(category).name %>
+              <%= image_tag("circle-xmark-solid.svg", height: "18px", width: "18px") %>
+            <% end %>
+          </li>
+        <% end %>
+        <% if params[:price].present? %>
+          <li>
+            <%= link_to(products_path(**request.query_parameters.except("price")), class: "btn btn-sm") do %>
+              <%= "<= #{number_to_currency(params[:price].to_i)}" %>
+              <%= image_tag("circle-xmark-solid.svg", height: "18px", width: "18px") %>
+            <% end %>
+          </li>
+        <% end %>
       </ul>
     </div>
     <details open>
@@ -104,8 +111,11 @@
     </div>
     <header>
       <%= form_with url: products_path, method: "GET", class: "search" do |search_form| %>
-        <% request.query_parameters.except("q", "button").each do |k, v| %>
-          <%= search_form.hidden_field(k, value: v) %>
+        <% [*params[:category]]&.each do |category| %>
+          <%= search_form.hidden_field("category[]", value: category) %>
+        <% end %>
+        <% if params[:price].present? %>
+          <%= search_form.hidden_field("price", value: params[:price]) %>
         <% end %>
         <%= search_form.text_field(:q, class: "input input-full", value: params[:q], placeholder: "Buscar jogo ou palavra-chave", autofocus: true) %>
         <%= search_form.button(type: "submit", class: "btn") do %>
