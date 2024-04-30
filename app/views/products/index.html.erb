@@ -109,18 +109,14 @@
     <section class="search-results">
       <span><%= @products.size %> resultados</span>
       <ol class="search-result-list">
-        <% @products.each do |product| %>
+        <% @products.map { ProductPresenter.new(_1) }.each do |product| %>
           <li>
             <div class="card">
               <div>
-                <% if product.image_url.present? %>
-                  <img src="<%= product.image_url %>" alt="<%= product.name %> banner" />
-                <% else %>
-                  <img src="https://dummyimage.com/460x215/33414f/64748b" alt="" aria-hidden=true />
-                <% end %>
+                <img src="<%= product.image_url %>" alt="<%= product.image_alt %>" />
               </div>
               <div class="card-body">
-                <p><%= product.name %></p>
+                <h4><%= product.name %></h4>
                 <ul class="product-categories-list">
                   <% product.categories.each do |category| %>
                     <li><%= category.name %></li>

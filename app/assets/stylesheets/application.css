@@ -188,6 +188,13 @@ input[type="radio"] {
   & .product-price-badge {
     width: 100%;
   }
+
+  & img {
+    max-height: 90px;
+    width: 100%;
+    object-position: left top;
+    object-fit: cover;
+  }
 }
 
 .card-body {
