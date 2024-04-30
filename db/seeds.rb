@@ -8,16 +8,16 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-prices = [0.00, 4.99, 7.99, 14.99, 23.45, 45.00, 60.00, 250.00, 400.00, 530.00]
-games = [
-  ['Red Dead Redemption 2', ['Action', 'Adventure', 'Open World']],
-  ['God of War', ['Action', 'Adventure', 'Hack and Slash']],
-  ['Celeste', %w[Platformer Indie]],
-  ['Monster Hunter: World', ['Action', 'RPG', 'Open World']],
-  ['Sekiro: Shadows Die Twice', %w[Action Adventure Souls-like]],
-  ['Disco Elysium', %w[RPG Narrative]],
-  ['Doom Eternal', ['First-Person Shooter', 'Action']],
-  ['Death Stranding', %w[Action Adventure]],
+PRICES = [0.00, 4.99, 7.99, 14.99, 23.45, 45.00, 60.00, 250.00, 400.00, 530.00]
+GAMES = [
+  ['Red Dead Redemption 2', ['Action', 'Adventure', 'Open World'], 'https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg?t=1714055653'],
+  ['God of War', ['Action', 'Adventure', 'Hack and Slash'], 'https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg?t=1695758729'],
+  ['Celeste', %w[Platformer Indie], 'https://cdn.akamai.steamstatic.com/steam/apps/504230/header.jpg?t=1714089525'],
+  ['Monster Hunter: World', ['Action', 'RPG', 'Open World'], 'https://cdn.akamai.steamstatic.com/steam/apps/582010/header.jpg?t=1711328912'],
+  ['Sekiro: Shadows Die Twice', %w[Action Adventure Souls-like], 'https://cdn.akamai.steamstatic.com/steam/apps/814380/header.jpg?t=1678991267'],
+  ['Disco Elysium', %w[RPG Narrative], 'https://cdn.akamai.steamstatic.com/steam/apps/632470/header.jpg?t=1712320924'],
+  ['Doom Eternal', ['First-Person Shooter', 'Action'], 'https://cdn.akamai.steamstatic.com/steam/apps/782330/header.jpg?t=1702308063'],
+  ['Death Stranding', %w[Action Adventure], 'https://cdn.akamai.steamstatic.com/steam/apps/1850570/header.jpg?t=1713782964'],
   ['Animal Crossing: New Horizons', %w[Simulation Sandbox]],
   ['Control', ['Action', 'Adventure', 'Third-Person Shooter']],
   ['Fire Emblem: Three Houses', ['Tactical RPG', 'Strategy']],
@@ -62,9 +62,38 @@ games = [
   ['Guardians of the Galaxy', %w[Action Adventure Narrative]]
 ]
 
-games.each do |game_name, category_names|
+DLCS = [
+  ['Outlast: Whistleblower DLC', %w[Horror Action Adventure], 'https://cdn.akamai.steamstatic.com/steam/apps/273300/header.jpg?t=1618944936'],
+  ['House Flipper - Pets DLC', %w[Simulation Indie], 'https://cdn.akamai.steamstatic.com/steam/apps/1569190/header.jpg?t=1710593163'],
+  ['Sonic Mania - Encore DLC', %w[Adventure Action], 'https://cdn.akamai.steamstatic.com/steam/apps/845640/header.jpg?t=1571827133'],
+  ['Monster Hunter World: Iceborne', ['Action', 'Co-op', 'Open World'], 'https://cdn.akamai.steamstatic.com/steam/apps/1118010/header.jpg?t=1702368891']
+]
+
+GIFT_CARDS = [
+  ['PSN Gift Card - R$35,00', [], 'https://gmedia.playstation.com/is/image/SIEPDC/ps-store-credit-image-block-35-pt-br25sep23?$native$'],
+  ['PSN Gift Card - R$150,00', [], 'https://gmedia.playstation.com/is/image/SIEPDC/ps-store-credit-image-block-150-pt-br25sep23?$native$'],
+  ['PSN Gift Card - R$300,00', [], 'https://gmedia.playstation.com/is/image/SIEPDC/ps-store-credit-image-block-300-pt-br25sep23?$native$'],
+  ['PSN Gift Card - R$400,00', [], 'https://gmedia.playstation.com/is/image/SIEPDC/ps-store-credit-image-block-400-pt-br25sep23?$native$'],
+  ['PSN Gift Card - R$530,00', [], 'https://gmedia.playstation.com/is/image/SIEPDC/ps-store-credit-image-block-530-pt-br25sep23?$native$']
+]
+
+GAMES.each do |game_name, category_names, image_url|
   categories = category_names.map { Category.find_or_create_by!(name: _1) }
   product = Product.find_or_create_by!(name: game_name)
 
-  product.update(categories:, price: prices.sample)
+  product.update(categories:, price: PRICES.sample, image_url:, content_type: 'game')
+end
+
+DLCS.each do |dlc_name, category_names, image_url|
+  categories = category_names.map { Category.find_or_create_by!(name: _1) }
+  product = Product.find_or_create_by!(name: dlc_name)
+
+  product.update(categories:, price: PRICES.sample, image_url:, content_type: 'dlc')
+end
+
+GIFT_CARDS.each do |gift_card_name, category_names, image_url|
+  categories = category_names.map { Category.find_or_create_by!(name: _1) }
+  product = Product.find_or_create_by!(name: gift_card_name)
+
+  product.update(categories:, price: PRICES.sample, image_url:, content_type: 'gift_card')
 end
