@@ -10,7 +10,7 @@ class Product < ApplicationRecord
   scope :with_categories, lambda { |category_ids|
                             return if category_ids.nil?
 
-                            joins(:categories).where(categories: { id: category_ids })
+                            joins(:categories).where(categories: { id: category_ids }).distinct
                           }
 
   scope :with_name, lambda { |name|

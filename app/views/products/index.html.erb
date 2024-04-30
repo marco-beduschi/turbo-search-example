@@ -73,7 +73,7 @@
           <% @categories.each do |category| %>
             <li>
               <label class="filter-list-item">
-                <%= check_box_tag("category[]", category.id, params[:category]&.include?(category.id.to_s), form: :filters_form) %>
+                <%= check_box_tag("category[]", category.id, params[:category]&.include?(category.id.to_s), id: "category_#{category.id}", form: :filters_form) %>
                 <%= category.name %>
               </label>
             </li>
