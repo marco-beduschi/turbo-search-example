@@ -101,15 +101,16 @@
       </ul>
     </div>
     <header>
-      <form action="/products" class="search">
-        <input type="text" name="q" class="input input-full" placeholder="Buscar jogo ou palavra-chave" autofocus/>
-        <button type="submit" class="btn">
-          <span class="sr-only">
-            Buscar
-          </span>
+      <%= form_with url: products_path, method: "GET", class: "search" do |f| %>
+        <% request.query_parameters.except("q", "button").each do |k, v| %>
+          <%= f.hidden_field(k, value: v) %>
+        <% end %>
+        <%= f.text_field(:q, class: "input input-full", value: params[:q], placeholder: "Buscar jogo ou palavra-chave", autofocus: true) %>
+        <%= f.button(type: "submit", class: "btn") do %>
+          <span class="sr-only">Buscar</span>
           <%= image_tag("magnifying-glass-solid.svg", width: "20px", height: "20px", "aria-hidden": true) %>
-        </button>
-      </form>
+        <% end %>
+      <% end %>
     </header>
     <section class="search-results">
       <span><%= @products.size %> resultados</span>

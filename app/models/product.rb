@@ -6,4 +6,8 @@ class Product < ApplicationRecord
 
     where(content_type:)
   }
+
+  scope :with_name, lambda { |name|
+    where('name LIKE ?', "%#{name}%")
+  }
 end
