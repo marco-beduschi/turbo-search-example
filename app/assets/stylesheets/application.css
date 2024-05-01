@@ -247,6 +247,10 @@ input[type="radio"] {
   border-width: 0;
 }
 
+.hidden {
+  display: none;
+}
+
 .input {
   border: 2px solid var(--slate-600);
   padding: 0.875rem 1.25rem;

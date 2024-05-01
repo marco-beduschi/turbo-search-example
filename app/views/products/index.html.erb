@@ -75,17 +75,22 @@
         Categoria
       </summary>
       <div>
-        <input type="text" name="category.name" placeholder="Buscar categoria" class="input input-full"/>
-        <ul class="filter-list">
-          <% @categories.each do |category| %>
-            <li>
-              <label class="filter-list-item">
-                <%= check_box_tag("category[]", category.id, params[:category]&.include?(category.id.to_s), id: "category_#{category.id}", form: :filters_form) %>
-                <%= category.name %>
-              </label>
-            </li>
+        <%= form_with(url: category_filters_path, data: {turbo_frame: "categories-list"}) do |categories_search_form| %>
+          <%= categories_search_form.text_field(:q, placeholder: "Buscar categoria", class: "input input-full") %>
+          <%= categories_search_form.hidden_field(:form, value: "filters_form") %>
+          <%= categories_search_form.hidden_field(:turbo_frame, value: "categories-list") %>
+          <% [*params[:category]]&.each do |category| %>
+            <%= categories_search_form.hidden_field("category[]", value: category) %>
           <% end %>
-        </ul>
+        <% end %>
+        <%= render(
+              template: "category_filters/index",
+              locals: {
+                turbo_frame: "categories-list",
+                categories: @categories,
+                form: :filters_form
+              }
+            ) %>
       </div>
     </details>
     <%= form_with(url: products_path, id: :filters_form, method: "GET") do |filters_form| %>
