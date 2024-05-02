@@ -28,13 +28,7 @@
   --slate-900: rgb(15 23 42);
   --slate-950: rgb(2 6 23);
 
-  --teal-300: rgb(94 234 212);
-  --teal-400: rgb(45 212 191);
-
   --color-base: white;
-  --color-base-50: var(--slate-50);
-  --color-base-100: var(--slate-100);
-  --color-base-200: var(--slate-200);
 
   --color-text: var(--slate-800);
 
@@ -177,7 +171,7 @@ main {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background-color: var(--color-base-100);
+  background-color: var(--slate-100);
   border-radius: var(--rounded-md);
   overflow: hidden;
 
