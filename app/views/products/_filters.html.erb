@@ -93,6 +93,7 @@
     </div>
   </details>
   <%= form_with(url: products_path, id: :filters_form, method: "GET") do |filters_form| %>
-    <% filters_form.submit("Aplicar Filtros", class: "btn btn-full") %>
+    <%= filters_form.hidden_field(:q, value: params[:q]) %>
+    <%= filters_form.submit("Aplicar Filtros", class: "btn btn-full") %>
   <% end %>
 </aside>
