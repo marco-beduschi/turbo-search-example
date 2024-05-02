@@ -21,8 +21,8 @@
 - [ ] Search on APPLY FILTER
       Select a price from the sidebar and click APLICAR FILTROS for the filter to be applied.
 
-- [ ] Price in URL
-      The applied price must show up in the URL, ex.: "localhost:3000?price=50".
+- [ ] Update URL
+      The applied price must show up in the URL, ex.: "localhost:3000?**price=50**".
 
 - [ ] Shareable URL
       The selected filter must match whatever is in the URL, so if URL is "localhost:3000?price=10", then ABAIXO DE R$10,00 option must be selected when the page is loaded.
