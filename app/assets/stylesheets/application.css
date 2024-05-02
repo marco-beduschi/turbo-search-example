@@ -1,3 +1,4 @@
+@import "reset.css";
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -13,7 +14,6 @@
  *= require_tree .
  *= require_self
  */
-@import "reset.css";
 
 :root {
   --slate-50: rgb(248 250 252);
@@ -245,6 +245,10 @@ input[type="radio"] {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+.hidden {
+  display: none;
 }
 
 .input {
