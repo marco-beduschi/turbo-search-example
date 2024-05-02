@@ -66,6 +66,19 @@ input[type="radio"] {
   }
 }
 
+aside {
+  width: 250px;
+}
+
+main {
+  display: flex;
+  gap: 1.25rem;
+  flex-direction: column;
+  flex-grow: 1;
+  max-width: 630px;
+  margin: 0 auto;
+}
+
 .container {
   height: 100%;
   max-width: 1080px;
@@ -73,10 +86,6 @@ input[type="radio"] {
   gap: 1.25rem;
   margin: 0 auto;
   padding: 1.25rem;
-}
-
-.filter-list-container {
-  width: 250px;
 }
 
 .applied-filters-list {
@@ -129,15 +138,6 @@ input[type="radio"] {
 .filter-list-item {
   display: block;
   padding: 0.625rem 0;
-}
-
-.search-container {
-  display: flex;
-  gap: 1.25rem;
-  flex-direction: column;
-  flex-grow: 1;
-  max-width: 630px;
-  margin: 0 auto;
 }
 
 .search {

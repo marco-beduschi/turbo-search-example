@@ -1,5 +1,5 @@
 <div class="container">
-  <aside class="filter-list-container">
+  <aside>
     <div>
       <p>Filtros</p>
       <ul class="applied-filters-list">
@@ -83,7 +83,7 @@
     </details>
     <input type="submit" value="Aplicar Filtros" class="btn btn-full" />
   </aside>
-  <main class="search-container">
+  <main>
     <div>
       <ul class="product-content-type-list">
         <li>
@@ -113,24 +113,7 @@
       <span><%= @products.size %> resultados</span>
       <ol class="search-result-list">
         <% @products.each do |product| %>
-          <li>
-            <div class="card">
-              <div>
-                <img src="<%= product.image.url %>" alt="<%= product.image.alt %>" />
-              </div>
-              <div class="card-body">
-                <h4><%= product.name %></h4>
-                <ul class="product-categories-list">
-                  <% product.categories.each do |category| %>
-                    <li><%= category.name %></li>
-                  <% end %>
-                </ul>
-                <div class="product-price">
-                  <p class="badge product-price-badge"><%= product.price.zero? ? Product.human_attribute_name("price", count: 0) : number_to_currency(product.price) %></p>
-                </div>
-              </div>
-            </div>
-          </li>
+          <%= render partial: "product", locals: {product:} %>
         <% end %>
       </ol>
     </section>
