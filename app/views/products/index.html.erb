@@ -1,119 +1,20 @@
 <div class="container">
-  <aside class="filter-list-container">
-    <div>
-      <p>Filtros</p>
-      <ul class="applied-filters-list">
-        <% [*params[:category]]&.each do |category| %>
-          <li>
-            <%= link_to(products_path(**request.query_parameters.except("category"), "category": [*params[:category]] - [category.to_s]), class: "btn btn-sm") do %>
-              <%= Category.find(category).name %>
-              <%= image_tag("circle-xmark-solid.svg", height: "18px", width: "18px") %>
-            <% end %>
-          </li>
-        <% end %>
-        <% if params[:price].present? %>
-          <li>
-            <%= link_to(products_path(**request.query_parameters.except("price")), class: "btn btn-sm") do %>
-              <%= "<= #{number_to_currency(params[:price].to_i)}" %>
-              <%= image_tag("circle-xmark-solid.svg", height: "18px", width: "18px") %>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-    <details open>
-      <summary class="filter-list-summary">
-        Preço
-      </summary>
-      <ul class="filter-list">
-        <li>
-          <label class="filter-list-item">
-            <%= radio_button_tag("price", 0, params[:price] == "0", form: :filters_form) %>
-            Grátis
-          </label>
-        </li>
-        <li>
-          <label class="filter-list-item">
-            <%= radio_button_tag("price", 5, params[:price] == "5", form: :filters_form) %>
-            Abaixo de R$5,00
-          </label>
-        </li>
-        <li>
-          <label class="filter-list-item">
-            <%= radio_button_tag("price", 10, params[:price] == "10", form: :filters_form) %>
-            Abaixo de R$10,00
-          </label>
-        </li>
-        <li>
-          <label class="filter-list-item">
-            <%= radio_button_tag("price", 15, params[:price] == "15", form: :filters_form) %>
-            Abaixo de R$15,00
-          </label>
-        </li>
-        <li>
-          <label class="filter-list-item">
-            <%= radio_button_tag("price", 25, params[:price] == "25", form: :filters_form) %>
-            Abaixo de R$25,00
-          </label>
-        </li>
-        <li>
-          <label class="filter-list-item">
-            <%= radio_button_tag("price", 50, params[:price] == "50", form: :filters_form) %>
-            Abaixo de R$50,00
-          </label>
-        </li>
-        <li>
-          <label class="filter-list-item">
-            <%= radio_button_tag("price", 100, params[:price] == "100", form: :filters_form) %>
-            Abaixo de R$100,00
-          </label>
-        </li>
-      </ul>
-    </details>
-    <details open>
-      <summary class="filter-list-summary">
-        Categoria
-      </summary>
-      <div>
-        <%= form_with(url: category_filters_path, data: {turbo_frame: "categories-list"}) do |categories_search_form| %>
-          <%= categories_search_form.text_field(:q, placeholder: "Buscar categoria", class: "input input-full") %>
-          <%= categories_search_form.hidden_field(:form, value: "filters_form") %>
-          <%= categories_search_form.hidden_field(:turbo_frame, value: "categories-list") %>
-          <% [*params[:category]]&.each do |category| %>
-            <%= categories_search_form.hidden_field("category[]", value: category) %>
-          <% end %>
-        <% end %>
-        <%= render(
-              template: "category_filters/index",
-              locals: {
-                turbo_frame: "categories-list",
-                categories: @categories,
-                form: :filters_form
-              }
-            ) %>
-      </div>
-    </details>
-    <%= form_with(url: products_path, id: :filters_form, method: "GET") do |filters_form| %>
-      <% filters_form.submit("Aplicar Filtros", class: "btn btn-full") %>
-    <% end %>
-  </aside>
+  <%= render partial: "filters" %>
   <div class="search-container">
-    <div>
-      <ul class="product-content-type-list">
+    <ul class="product-content-type-list">
+      <li>
+        <%= link_to(products_path({**request.query_parameters.except("content_type")}), class: class_names("btn btn-sm", "btn-active": request.query_parameters["content_type"].nil?)) do %>
+          <%= Product.human_attribute_name("content_type.all") %>
+        <% end %>
+      </li>
+      <% ProductPresenter.content_types.each do |content_type| %>
         <li>
-          <%= link_to(products_path({**request.query_parameters.except("content_type")}), class: class_names("btn btn-sm", "btn-active": request.query_parameters["content_type"].nil?)) do %>
-            <%= Product.human_attribute_name("content_type.all") %>
+          <%= link_to(products_path({**request.query_parameters, "content_type" => content_type}), class: class_names("btn btn-sm", "btn-active": request.query_parameters["content_type"] == content_type)) do %>
+            <%= Product.human_attribute_name("content_type.#{content_type}") %>
           <% end %>
         </li>
-        <% (Product.select(:content_type).distinct.map(&:content_type)).each do |content_type| %>
-          <li>
-            <%= link_to(products_path({**request.query_parameters, "content_type" => content_type}), class: class_names("btn btn-sm", "btn-active": request.query_parameters["content_type"] == content_type)) do %>
-              <%= Product.human_attribute_name("content_type.#{content_type}") %>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+      <% end %>
+    </ul>
     <header>
       <%= form_with url: products_path, method: "GET", class: "search" do |search_form| %>
         <% [*params[:category]]&.each do |category| %>
@@ -133,24 +34,7 @@
       <span><%= @products.size %> resultados</span>
       <ol class="search-result-list">
         <% @products.map { ProductPresenter.new(_1) }.each do |product| %>
-          <li>
-            <div class="card">
-              <div>
-                <img src="<%= product.image_url %>" alt="<%= product.image_alt %>" />
-              </div>
-              <div class="card-body">
-                <h4><%= product.name %></h4>
-                <ul class="product-categories-list">
-                  <% product.categories.each do |category| %>
-                    <li><%= category.name %></li>
-                  <% end %>
-                </ul>
-                <div class="product-price">
-                  <p class="badge product-price-badge"><%= product.price.zero? ? Product.human_attribute_name("price", count: 0) : number_to_currency(product.price) %></p>
-                </div>
-              </div>
-            </div>
-          </li>
+          <%= render partial: "product", locals: {product:} %>
         <% end %>
       </ol>
     </section>

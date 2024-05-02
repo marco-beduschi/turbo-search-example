@@ -1,0 +1,18 @@
+<li>
+  <div class="card">
+    <div>
+      <img src="<%= product.image_url %>" alt="<%= product.image_alt %>" />
+    </div>
+    <div class="card-body">
+      <h4><%= product.name %></h4>
+      <ul class="product-categories-list">
+        <% product.categories.each do |category| %>
+          <li><%= category.name %></li>
+        <% end %>
+      </ul>
+      <div class="product-price">
+        <p class="badge product-price-badge"><%= product.price.zero? ? Product.human_attribute_name("price", count: 0) : number_to_currency(product.price) %></p>
+      </div>
+    </div>
+  </div>
+</li>

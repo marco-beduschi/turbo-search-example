@@ -8,8 +8,8 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-PRICES = [0.00, 4.99, 7.99, 14.99, 23.45, 45.00, 60.00, 250.00, 400.00, 530.00]
-GAMES = [
+prices = [0.00, 4.99, 7.99, 14.99, 23.45, 45.00, 60.00, 250.00, 400.00, 530.00]
+games = [
   ['Red Dead Redemption 2', ['Action', 'Adventure', 'Open World'], 'https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg?t=1714055653'],
   ['God of War', ['Action', 'Adventure', 'Hack and Slash'], 'https://cdn.akamai.steamstatic.com/steam/apps/1593500/header.jpg?t=1695758729'],
   ['Celeste', %w[Platformer Indie], 'https://cdn.akamai.steamstatic.com/steam/apps/504230/header.jpg?t=1714089525'],
@@ -62,14 +62,14 @@ GAMES = [
   ['Guardians of the Galaxy', %w[Action Adventure Narrative]]
 ]
 
-DLCS = [
+dlcs = [
   ['Outlast: Whistleblower DLC', %w[Horror Action Adventure], 'https://cdn.akamai.steamstatic.com/steam/apps/273300/header.jpg?t=1618944936'],
   ['House Flipper - Pets DLC', %w[Simulation Indie], 'https://cdn.akamai.steamstatic.com/steam/apps/1569190/header.jpg?t=1710593163'],
   ['Sonic Mania - Encore DLC', %w[Adventure Action], 'https://cdn.akamai.steamstatic.com/steam/apps/845640/header.jpg?t=1571827133'],
   ['Monster Hunter World: Iceborne', ['Action', 'Co-op', 'Open World'], 'https://cdn.akamai.steamstatic.com/steam/apps/1118010/header.jpg?t=1702368891']
 ]
 
-GIFT_CARDS = [
+gift_cards = [
   ['PSN Gift Card - R$35,00', [], 'https://gmedia.playstation.com/is/image/SIEPDC/ps-store-credit-image-block-35-pt-br25sep23?$native$'],
   ['PSN Gift Card - R$150,00', [], 'https://gmedia.playstation.com/is/image/SIEPDC/ps-store-credit-image-block-150-pt-br25sep23?$native$'],
   ['PSN Gift Card - R$300,00', [], 'https://gmedia.playstation.com/is/image/SIEPDC/ps-store-credit-image-block-300-pt-br25sep23?$native$'],
@@ -77,23 +77,23 @@ GIFT_CARDS = [
   ['PSN Gift Card - R$530,00', [], 'https://gmedia.playstation.com/is/image/SIEPDC/ps-store-credit-image-block-530-pt-br25sep23?$native$']
 ]
 
-GAMES.each do |game_name, category_names, image_url|
+games.each do |game_name, category_names, image_url|
   categories = category_names.map { Category.find_or_create_by!(name: _1) }
   product = Product.find_or_create_by!(name: game_name)
 
-  product.update(categories:, price: PRICES.sample, image_url:, content_type: 'game')
+  product.update(categories:, price: prices.sample, image_url:, content_type: 'game')
 end
 
-DLCS.each do |dlc_name, category_names, image_url|
+dlcs.each do |dlc_name, category_names, image_url|
   categories = category_names.map { Category.find_or_create_by!(name: _1) }
   product = Product.find_or_create_by!(name: dlc_name)
 
-  product.update(categories:, price: PRICES.sample, image_url:, content_type: 'dlc')
+  product.update(categories:, price: prices.sample, image_url:, content_type: 'dlc')
 end
 
-GIFT_CARDS.each do |gift_card_name, category_names, image_url|
+gift_cards.each do |gift_card_name, category_names, image_url|
   categories = category_names.map { Category.find_or_create_by!(name: _1) }
   product = Product.find_or_create_by!(name: gift_card_name)
 
-  product.update(categories:, price: PRICES.sample, image_url:, content_type: 'gift_card')
+  product.update(categories:, price: prices.sample, image_url:, content_type: 'gift_card')
 end
