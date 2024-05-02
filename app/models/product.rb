@@ -22,4 +22,15 @@ class Product < ApplicationRecord
 
                              where('price <= ?', price)
                            }
+
+  def self.content_types
+    pluck(:content_type).uniq
+  end
+
+  def image
+    OpenStruct.new(
+      url: image_url || 'https://dummyimage.com/460x215/33414f/64748b',
+      alt: "#{name} banner"
+    )
+  end
 end

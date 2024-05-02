@@ -114,11 +114,11 @@
     <section class="search-results">
       <span><%= @products.size %> resultados</span>
       <ol class="search-result-list">
-        <% @products.map { ProductPresenter.new(_1) }.each do |product| %>
+        <% @products.each do |product| %>
           <li>
             <div class="card">
               <div>
-                <img src="<%= product.image_url %>" alt="<%= product.image_alt %>" />
+                <img src="<%= product.image.url %>" alt="<%= product.image.alt %>" />
               </div>
               <div class="card-body">
                 <h4><%= product.name %></h4>
