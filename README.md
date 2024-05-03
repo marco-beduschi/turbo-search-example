@@ -47,3 +47,8 @@
       Ex.: [**action (x)**] [**adventure (x)**] [**RPG (x)**]
 - [ ] The list of applied filters must match whatever is in the URL.
       ex.: If URL is "localhost:3000?price=10&categories[]=racing&categories[]=simulation", then the list should be loaded as [**<= R$10,00 (x)**] [**Racing (x)**] [**Simulation (x)**]
+
+## References
+
+- [Turbo Frames](https://turbo.hotwired.dev/reference/frames)
+- [Action View Form Helpers](https://guides.rubyonrails.org/form_helpers.html)
