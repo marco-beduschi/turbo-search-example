@@ -7,7 +7,7 @@
           <%= Product.human_attribute_name("content_type.all") %>
         <% end %>
       </li>
-      <% ProductPresenter.content_types.each do |content_type| %>
+      <% Product.content_types.each do |content_type| %>
         <li>
           <%= link_to(products_path({**request.query_parameters, "content_type" => content_type}), class: class_names("btn btn-sm", "btn-active": request.query_parameters["content_type"] == content_type)) do %>
             <%= Product.human_attribute_name("content_type.#{content_type}") %>
@@ -33,7 +33,7 @@
     <section class="search-results">
       <span><%= @products.size %> resultados</span>
       <ol class="search-result-list">
-        <% @products.map { ProductPresenter.new(_1) }.each do |product| %>
+        <% @products.each do |product| %>
           <%= render partial: "product", locals: {product:} %>
         <% end %>
       </ol>

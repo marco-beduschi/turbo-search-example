@@ -1,3 +1,4 @@
+@import "animations.css";
 @import "reset.css";
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
@@ -184,6 +185,9 @@ input[type="radio"] {
   background-color: var(--color-base-100);
   border-radius: var(--rounded-md);
   overflow: hidden;
+
+  animation: appear linear;
+  animation-timeline: view();
 
   & .product-price-badge {
     width: 100%;
