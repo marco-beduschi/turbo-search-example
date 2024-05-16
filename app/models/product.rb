@@ -22,4 +22,10 @@ class Product < ApplicationRecord
 
                              where('price <= ?', price)
                            }
+
+  composed_of :image
+
+  def self.content_types
+    Product.select(:content_type).distinct.map(&:content_type)
+  end
 end

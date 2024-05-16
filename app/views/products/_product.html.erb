@@ -1,7 +1,7 @@
 <li>
   <div class="card">
     <div>
-      <img src="<%= product.image_url %>" alt="<%= product.image_alt %>" />
+      <img src="<%= BannerImage.new(product).url %>" alt="<%= BannerImage.new(product).alt %>" />
     </div>
     <div class="card-body">
       <h4><%= product.name %></h4>
