@@ -1,12 +1,31 @@
 # README
 
+## About
+
+An example of complex searching using only Ruby On Rails 7 + Hotwire. No additional JS needed.
+
+![Screen recording of the demo](./public/docs/ex1.gif)
+
+## Instalation
+
+### Requirements
+- ruby 3.2.3
+
+```sh
+bin/bundle
+bin/rails db:setup
+bin/rails db:migrate
+
+bin/rails s
+```
+
 ## Exercises
 
 ### 1. Search by product's name
 
 - [x] Search by name, ex.: **de** should return "El**de**n Ring" but also "**De**vil May Cry"
 - [x] Every new search should update the URL, ex.: "localhost:3000?**q=de**". Clicking "Back Button" on browers should go to previous query
-- [x] When submitting the search, the user should not lose focus of the search bar so he can keep typing after each search
+- [x] When submitting the search, the user should not lose focus of the search bar so he can keep typing after each search◊
 
 ### 2. Search by price
 

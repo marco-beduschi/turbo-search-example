@@ -8,3 +8,13 @@
     transform: translateY(0);
   }
 }
+
+@keyframes sideaway {
+  from {
+    display: block;
+  }
+  to {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+}
