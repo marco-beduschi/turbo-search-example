@@ -141,6 +141,12 @@ input[type="radio"] {
   margin: 0 auto;
 }
 
+.search-with-content-type {
+  display: flex;
+  gap: 1.25rem;
+  flex-direction: column;
+}
+
 .search {
   position: relative;
   display: flex;

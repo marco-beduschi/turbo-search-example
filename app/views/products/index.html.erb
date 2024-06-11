@@ -1,35 +1,37 @@
 <div class="container">
   <%= render partial: "filters" %>
   <div class="search-container">
-    <ul class="product-content-type-list">
-      <li>
-        <%= link_to(products_path({**request.query_parameters.except("content_type")}), class: class_names("btn btn-sm", "btn-active": request.query_parameters["content_type"].nil?)) do %>
-          <%= Product.human_attribute_name("content_type.all") %>
-        <% end %>
-      </li>
-      <% Product.content_types.each do |content_type| %>
+    <div class="search-with-content-type">
+      <ul class="product-content-type-list">
         <li>
-          <%= link_to(products_path({**request.query_parameters, "content_type" => content_type}), class: class_names("btn btn-sm", "btn-active": request.query_parameters["content_type"] == content_type)) do %>
-            <%= Product.human_attribute_name("content_type.#{content_type}") %>
+          <%= link_to(products_path({**request.query_parameters.except("content_type")}), class: class_names("btn btn-sm", "btn-active": request.query_parameters["content_type"].nil?)) do %>
+            <%= Product.human_attribute_name("content_type.all") %>
           <% end %>
         </li>
-      <% end %>
-    </ul>
-    <header>
-      <%= form_with url: products_path, method: "GET", class: "search" do |search_form| %>
-        <% [*params[:category]]&.each do |category| %>
-          <%= search_form.hidden_field("category[]", value: category) %>
+        <% Product.content_types.each do |content_type| %>
+          <li>
+            <%= link_to(products_path({**request.query_parameters, "content_type" => content_type}), class: class_names("btn btn-sm", "btn-active": request.query_parameters["content_type"] == content_type)) do %>
+              <%= Product.human_attribute_name("content_type.#{content_type}") %>
+            <% end %>
+          </li>
         <% end %>
-        <% if params[:price].present? %>
-          <%= search_form.hidden_field("price", value: params[:price]) %>
+      </ul>
+      <header>
+        <%= form_with url: products_path, method: "GET", class: "search" do |search_form| %>
+          <% [*params[:category]]&.each do |category| %>
+            <%= search_form.hidden_field("category[]", value: category) %>
+          <% end %>
+          <% if params[:price].present? %>
+            <%= search_form.hidden_field("price", value: params[:price]) %>
+          <% end %>
+          <%= search_form.text_field(:q, class: "input input-full", value: params[:q], placeholder: "Buscar jogo ou palavra-chave", autofocus: true, data: {turbo_permanent: true}) %>
+          <%= search_form.button(type: "submit", class: "btn") do %>
+            <span class="sr-only">Buscar</span>
+            <%= image_tag("magnifying-glass-solid.svg", width: "20px", height: "20px", "aria-hidden": true) %>
+          <% end %>
         <% end %>
-        <%= search_form.text_field(:q, class: "input input-full", value: params[:q], placeholder: "Buscar jogo ou palavra-chave", autofocus: true, data: {turbo_permanent: true}) %>
-        <%= search_form.button(type: "submit", class: "btn") do %>
-          <span class="sr-only">Buscar</span>
-          <%= image_tag("magnifying-glass-solid.svg", width: "20px", height: "20px", "aria-hidden": true) %>
-        <% end %>
-      <% end %>
-    </header>
+      </header>
+    </div>
     <section class="search-results">
       <span><%= @products.size %> resultados</span>
       <ol class="search-result-list">
