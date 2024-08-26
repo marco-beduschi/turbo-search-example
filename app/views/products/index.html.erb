@@ -17,28 +17,38 @@
         <% end %>
       </ul>
       <header>
-        <%= form_with url: products_path, method: "GET", class: "search" do |search_form| %>
+        <%= form_with url: products_path, method: "GET", class: "search", data: { controller: "debounce-search", turbo_frame: "search-results" } do |search_form| %>
           <% [*params[:category]]&.each do |category| %>
             <%= search_form.hidden_field("category[]", value: category) %>
           <% end %>
           <% if params[:price].present? %>
             <%= search_form.hidden_field("price", value: params[:price]) %>
           <% end %>
-          <%= search_form.text_field(:q, class: "input input-full", value: params[:q], placeholder: "Buscar jogo ou palavra-chave", autofocus: true, data: {turbo_permanent: true}) %>
+          <%= search_form.text_field(:q, 
+                                     class: "input input-full", 
+                                     value: params[:q], 
+                                     placeholder: "Search products", 
+                                     autofocus: true, 
+                                     data: { 
+                                       action: "input->debounce-search#search",
+                                       debounce_search_target: "input"
+                                     }) %>
           <%= search_form.button(type: "submit", class: "btn") do %>
-            <span class="sr-only">Buscar</span>
+            <span class="sr-only">Search</span>
             <%= image_tag("magnifying-glass-solid.svg", width: "20px", height: "20px", "aria-hidden": true) %>
           <% end %>
         <% end %>
       </header>
     </div>
-    <section class="search-results">
-      <span><%= @products.size %> resultados</span>
-      <ol class="search-result-list">
-        <% @products.each do |product| %>
-          <%= render partial: "product", locals: {product:} %>
-        <% end %>
-      </ol>
-    </section>
+    <%= turbo_frame_tag "search-results" do %>
+      <section class="search-results">
+        <span><%= @products.size %> resultados</span>
+        <ol class="search-result-list">
+          <% @products.each do |product| %>
+            <%= render partial: "product", locals: {product:} %>
+          <% end %>
+        </ol>
+      </section>
+    <% end %>
   </div>
 </div>
