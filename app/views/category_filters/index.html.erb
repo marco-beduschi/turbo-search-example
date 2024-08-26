@@ -1,7 +1,7 @@
 <%= turbo_frame_tag(turbo_frame) do %>
   <ul class="filter-list">
     <% Category.all.each do |category| %>
-      <li class="<%= class_names("hidden": categories.exclude?(category))%>">
+      <li class="<%= class_names("hidden": categories&.exclude?(category))%>">
         <label class="filter-list-item">
           <%= check_box_tag(
                 "category[]",
